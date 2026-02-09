@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Build output
+out/
+
+# User-generated video projects
+src/videos/
+
+# Work in progress
+src/template/sequences/EndSceneV2.tsx
+
+# OS files
+.DS_Store

@@ -98,7 +98,7 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
           left: 0,
           right: 0,
           bottom: plugAndPlayBarHeight,
-          backgroundColor: "rgba(0, 0, 0, 0.25)",
+          backgroundColor: "rgba(0, 0, 0, 0.1)",
         }}
       />
 
@@ -108,21 +108,21 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
           style={{
             justifyContent: "center",
             alignItems: "center",
-            padding: 40,
-            paddingBottom: plugAndPlayBarHeight + 40,
+            padding: 20,
+            paddingBottom: plugAndPlayBarHeight + 20,
           }}
         >
           <div
             style={{
-              width: 900,
+              width: "95%",
               backgroundColor: "#1a1a1a",
-              borderRadius: 24,
-              padding: 50,
+              borderRadius: 28,
+              padding: 56,
               transform: `scale(${modalScale})`,
               opacity: modalOpacity,
               boxShadow: frame >= successFrame && toggleProgress >= 1
                 ? `0 0 ${60 * glowPulse}px ${colors.teal}40, 0 0 ${120 * glowPulse}px ${colors.teal}20`
-                : "0 20px 60px rgba(0, 0, 0, 0.5)",
+                : "0 25px 70px rgba(0, 0, 0, 0.5)",
               border: `1px solid ${frame >= successFrame && toggleProgress >= 1 ? colors.teal : "#333"}`,
               transition: "border-color 0.3s ease",
             }}
@@ -130,10 +130,10 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
             {/* Header */}
             <div
               style={{
-                fontSize: 42,
+                fontSize: 48,
                 fontWeight: 700,
                 color: "white",
-                marginBottom: 12,
+                marginBottom: 16,
                 fontFamily: "SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif",
               }}
             >
@@ -141,9 +141,9 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
             </div>
             <div
               style={{
-                fontSize: 24,
+                fontSize: 28,
                 color: "#888",
-                marginBottom: 50,
+                marginBottom: 56,
                 fontFamily: "SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif",
               }}
             >
@@ -154,8 +154,8 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
             <div
               style={{
                 backgroundColor: "#252525",
-                borderRadius: 16,
-                padding: 35,
+                borderRadius: 20,
+                padding: 44,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -164,13 +164,13 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
               }}
             >
               {/* Left side - Extension info */}
-              <div style={{ flex: 1, marginRight: 30 }}>
+              <div style={{ flex: 1, marginRight: 36 }}>
                 <div
                   style={{
-                    fontSize: 32,
+                    fontSize: 38,
                     fontWeight: 600,
                     color: "white",
-                    marginBottom: 12,
+                    marginBottom: 16,
                     fontFamily: "SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif",
                   }}
                 >
@@ -178,7 +178,7 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
                 </div>
                 <div
                   style={{
-                    fontSize: 22,
+                    fontSize: 26,
                     color: "#999",
                     lineHeight: 1.4,
                     fontFamily: "SF Pro Text, -apple-system, BlinkMacSystemFont, sans-serif",
@@ -193,21 +193,21 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 15,
+                  gap: 18,
                 }}
               >
                 {/* Settings gear icon */}
                 <div
                   style={{
-                    width: 40,
-                    height: 40,
+                    width: 48,
+                    height: 48,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     opacity: 0.5,
                   }}
                 >
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2">
                     <circle cx="12" cy="12" r="3" />
                     <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
                   </svg>
@@ -216,10 +216,10 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
                 {/* Toggle Switch */}
                 <div
                   style={{
-                    width: 80,
-                    height: 44,
+                    width: 96,
+                    height: 52,
                     backgroundColor: interpolate(toggleProgress, [0, 1], [0, 1]) > 0.5 ? colors.teal : "#444",
-                    borderRadius: 22,
+                    borderRadius: 26,
                     padding: 4,
                     cursor: "pointer",
                     transition: "background-color 0.3s ease",
@@ -229,11 +229,11 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
                   {/* Toggle knob */}
                   <div
                     style={{
-                      width: 36,
-                      height: 36,
+                      width: 44,
+                      height: 44,
                       backgroundColor: "white",
                       borderRadius: "50%",
-                      transform: `translateX(${interpolate(toggleProgress, [0, 1], [0, 36])}px)`,
+                      transform: `translateX(${interpolate(toggleProgress, [0, 1], [0, 44])}px)`,
                       boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
                     }}
                   />
@@ -245,11 +245,11 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
             {frame >= successFrame && (
               <div
                 style={{
-                  marginTop: 40,
+                  marginTop: 48,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  gap: 15,
+                  gap: 18,
                   opacity: successOpacity,
                   transform: `scale(${successScale})`,
                 }}
@@ -257,8 +257,8 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
                 {/* Checkmark circle */}
                 <div
                   style={{
-                    width: 50,
-                    height: 50,
+                    width: 60,
+                    height: 60,
                     backgroundColor: colors.teal,
                     borderRadius: "50%",
                     display: "flex",
@@ -266,13 +266,13 @@ export const SetupSceneBuiltIn: React.FC<SetupSceneBuiltInProps> = ({
                     justifyContent: "center",
                   }}
                 >
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
                 <div
                   style={{
-                    fontSize: 28,
+                    fontSize: 34,
                     fontWeight: 600,
                     color: colors.teal,
                     fontFamily: "SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif",

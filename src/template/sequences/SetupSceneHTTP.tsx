@@ -88,7 +88,7 @@ export const SetupSceneHTTP: React.FC<SetupSceneHTTPProps> = ({
               left: 0,
               right: 0,
               bottom: plugAndPlayBarHeight,
-              backgroundColor: "rgba(0, 0, 0, 0.25)",
+              backgroundColor: "rgba(0, 0, 0, 0.1)",
             }}
           />
 
@@ -98,17 +98,17 @@ export const SetupSceneHTTP: React.FC<SetupSceneHTTPProps> = ({
               paddingBottom: plugAndPlayBarHeight,
               justifyContent: "center",
               alignItems: "center",
-              padding: 30,
+              padding: 20,
             }}
           >
             <div
               style={{
-                width: "90%",
+                width: "95%",
                 backgroundColor: colors.white,
-                borderRadius: 22,
-                padding: 32,
+                borderRadius: 28,
+                padding: 44,
                 transform: `scale(${modalScale})`,
-                boxShadow: "0 20px 60px rgba(0, 0, 0, 0.4)",
+                boxShadow: "0 25px 70px rgba(0, 0, 0, 0.5)",
               }}
             >
               {/* Header */}
@@ -116,30 +116,30 @@ export const SetupSceneHTTP: React.FC<SetupSceneHTTPProps> = ({
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 12,
-                  marginBottom: 28,
-                  paddingBottom: 18,
-                  borderBottom: "2px solid #E8E8E8",
+                  gap: 16,
+                  marginBottom: 36,
+                  paddingBottom: 24,
+                  borderBottom: "3px solid #E8E8E8",
                 }}
               >
                 <div
                   style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 10,
+                    width: 52,
+                    height: 52,
+                    borderRadius: 14,
                     backgroundColor: colors.teal,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
                     <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
                   </svg>
                 </div>
                 <span
                   style={{
-                    fontSize: 28,
+                    fontSize: 36,
                     fontWeight: 700,
                     color: colors.black,
                     fontFamily: "'Inter', sans-serif",
@@ -150,15 +150,15 @@ export const SetupSceneHTTP: React.FC<SetupSceneHTTPProps> = ({
               </div>
 
               {/* Form */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
                 {/* Extension Name */}
                 <div>
                   <label
                     style={{
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: 600,
                       color: "#666",
-                      marginBottom: 8,
+                      marginBottom: 12,
                       display: "block",
                       fontFamily: "'Inter', sans-serif",
                     }}
@@ -167,14 +167,14 @@ export const SetupSceneHTTP: React.FC<SetupSceneHTTPProps> = ({
                   </label>
                   <div
                     style={{
-                      padding: "14px 18px",
+                      padding: "18px 22px",
                       backgroundColor: "#F5F5F5",
-                      borderRadius: 10,
+                      borderRadius: 12,
                       border: "2px solid #E0E0E0",
-                      fontSize: 22,
+                      fontSize: 28,
                       fontFamily: "'Inter', sans-serif",
                       color: colors.black,
-                      minHeight: 26,
+                      minHeight: 34,
                     }}
                   >
                     {extensionName.slice(0, nameChars)}
@@ -188,10 +188,10 @@ export const SetupSceneHTTP: React.FC<SetupSceneHTTPProps> = ({
                 <div>
                   <label
                     style={{
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: 600,
                       color: "#666",
-                      marginBottom: 8,
+                      marginBottom: 12,
                       display: "block",
                       fontFamily: "'Inter', sans-serif",
                     }}
@@ -200,14 +200,14 @@ export const SetupSceneHTTP: React.FC<SetupSceneHTTPProps> = ({
                   </label>
                   <div
                     style={{
-                      padding: "14px 18px",
+                      padding: "18px 22px",
                       backgroundColor: "#1a1a1a",
-                      borderRadius: 10,
+                      borderRadius: 12,
                       border: "2px solid #333",
-                      fontSize: 18,
+                      fontSize: 24,
                       fontFamily: "'SF Mono', 'Fira Code', monospace",
                       color: colors.teal,
-                      minHeight: 26,
+                      minHeight: 34,
                       wordBreak: "break-all",
                     }}
                   >
@@ -222,10 +222,10 @@ export const SetupSceneHTTP: React.FC<SetupSceneHTTPProps> = ({
                 <div>
                   <label
                     style={{
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: 600,
                       color: "#666",
-                      marginBottom: 8,
+                      marginBottom: 12,
                       display: "block",
                       fontFamily: "'Inter', sans-serif",
                     }}
@@ -234,19 +234,20 @@ export const SetupSceneHTTP: React.FC<SetupSceneHTTPProps> = ({
                   </label>
                   <div
                     style={{
-                      padding: "14px 18px",
+                      padding: "18px 22px",
                       backgroundColor: "#F5F5F5",
-                      borderRadius: 10,
+                      borderRadius: 12,
                       border: "2px solid #E0E0E0",
-                      fontSize: 18,
+                      fontSize: 24,
                       fontFamily: "'Inter', sans-serif",
                       color: colors.black,
                       display: "flex",
                       justifyContent: "space-between",
+                      alignItems: "center",
                     }}
                   >
                     <span>HTTP</span>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="#666">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#666">
                       <path d="M7 10l5 5 5-5z" />
                     </svg>
                   </div>
@@ -256,11 +257,11 @@ export const SetupSceneHTTP: React.FC<SetupSceneHTTPProps> = ({
               {/* Save button */}
               <div
                 style={{
-                  marginTop: 28,
+                  marginTop: 36,
                   display: "flex",
                   justifyContent: "flex-end",
                   alignItems: "center",
-                  gap: 16,
+                  gap: 20,
                 }}
               >
                 {/* Extension Added message */}
@@ -270,15 +271,15 @@ export const SetupSceneHTTP: React.FC<SetupSceneHTTPProps> = ({
                       transform: `scale(${extensionAddedScale})`,
                       display: "flex",
                       alignItems: "center",
-                      gap: 10,
+                      gap: 12,
                     }}
                   >
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill={colors.teal}>
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill={colors.teal}>
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                     </svg>
                     <span
                       style={{
-                        fontSize: 20,
+                        fontSize: 26,
                         color: colors.teal,
                         fontFamily: "'Inter', sans-serif",
                         fontWeight: 600,
@@ -291,14 +292,14 @@ export const SetupSceneHTTP: React.FC<SetupSceneHTTPProps> = ({
 
                 <div
                   style={{
-                    padding: "12px 32px",
+                    padding: "16px 40px",
                     backgroundColor: typingComplete ? colors.teal : "#ccc",
-                    borderRadius: 10,
-                    fontSize: 18,
+                    borderRadius: 12,
+                    fontSize: 24,
                     fontWeight: 600,
                     color: colors.white,
                     fontFamily: "'Inter', sans-serif",
-                    boxShadow: typingComplete ? `0 4px 18px rgba(78, 205, 196, 0.4)` : "none",
+                    boxShadow: typingComplete ? `0 6px 24px rgba(78, 205, 196, 0.4)` : "none",
                   }}
                 >
                   Save Changes

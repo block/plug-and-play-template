@@ -4,7 +4,7 @@ import { AbsoluteFill, Sequence, staticFile, Audio } from "remotion";
 
 import { HookScene } from "./sequences/HookScene";
 import { PlugAndPlayScene } from "./sequences/PlugAndPlayScene";
-import { ExplainerScene } from "./sequences/ExplainerScene";
+import { ExplainerScene, calculateExplainerDuration } from "./sequences/ExplainerScene";
 import { LetsPlayScene } from "./sequences/LetsPlayScene";
 import { PromptScene } from "./sequences/PromptScene";
 import { EndScene } from "./sequences/EndScene";
@@ -103,6 +103,11 @@ interface PlugAndPlayVideoProps {
 
 export const PlugAndPlayVideo: React.FC<PlugAndPlayVideoProps> = ({ config }) => {
   // ------------------------------
+  // Check for timing overrides (for audio sync)
+  // ------------------------------
+  const overrides = config.timingOverrides ?? {};
+
+  // ------------------------------
   // Prompt duration (typing + working hold)
   // ------------------------------
   const promptTextLength = config.promptText?.length ?? 0;
@@ -116,31 +121,31 @@ export const PlugAndPlayVideo: React.FC<PlugAndPlayVideoProps> = ({ config }) =>
   // How long "goose is working…" stays on screen AFTER fade-in
   const workingHold = 90; // 3 seconds @ 30fps
 
-  const promptDuration = typingEnd + workingFadeIn + workingHold;
+  const defaultPromptDuration = typingEnd + workingFadeIn + workingHold;
 
   // ------------------------------
   // Dynamic Setup duration
   // ------------------------------
-  const setupDuration = getSetupDuration(config.setup);
+  const defaultSetupDuration = getSetupDuration(config.setup);
 
   // ------------------------------
-  // Explainer optional
+  // Explainer optional (dynamic duration based on content)
   // ------------------------------
   const explainerLines = config.explainerLines ?? [];
   const hasExplainer = explainerLines.length > 0;
-  const explainerDuration = hasExplainer ? timing.explainerDuration : 0;
+  const defaultExplainerDuration = hasExplainer ? calculateExplainerDuration(explainerLines) : 0;
 
   // ------------------------------
   // Summary optional
   // ------------------------------
   const summary = config.summary ?? { type: "none" as const };
   const hasSummary = summary.type !== "none";
-  const summaryDuration = hasSummary ? timing.summaryDuration : 0;
+  const defaultSummaryDuration = hasSummary ? timing.summaryDuration : 0;
 
   // ------------------------------
   // Dynamic Results duration (for recordings)
   // ------------------------------
-  const getResultsDuration = () => {
+  const getDefaultResultsDuration = () => {
     if (config.results.type === "recording" && config.results.durationInSeconds) {
       // Convert seconds to frames, add small buffer
       return Math.ceil(config.results.durationInSeconds * timing.fps) + 30;
@@ -148,22 +153,34 @@ export const PlugAndPlayVideo: React.FC<PlugAndPlayVideoProps> = ({ config }) =>
     // Default for bullets/visuals
     return timing.resultsDuration;
   };
-  const resultsDuration = getResultsDuration();
+  const defaultResultsDuration = getDefaultResultsDuration();
 
   // ------------------------------
-  // Start frames (✅ use setupDuration, not timing.setupDuration)
+  // Apply timing overrides (for audio sync)
+  // ------------------------------
+  const hookDuration = overrides.hookDuration ?? timing.hookDuration;
+  const plugAndPlayDuration = overrides.plugAndPlayDuration ?? timing.plugAndPlayDuration;
+  const setupDuration = overrides.setupDuration ?? defaultSetupDuration;
+  const explainerDuration = overrides.explainerDuration ?? defaultExplainerDuration;
+  const letsPlayDuration = overrides.letsPlayDuration ?? timing.letsPlayDuration;
+  const promptDuration = overrides.promptDuration ?? defaultPromptDuration;
+  const resultsDuration = overrides.resultsDuration ?? defaultResultsDuration;
+  const summaryDuration = overrides.summaryDuration ?? defaultSummaryDuration;
+
+  // ------------------------------
+  // Start frames
   // ------------------------------
   const hookStart = 0;
-  const plugAndPlayStart = hookStart + timing.hookDuration;
+  const plugAndPlayStart = hookStart + hookDuration;
 
-  const setupStart = plugAndPlayStart + timing.plugAndPlayDuration;
+  const setupStart = plugAndPlayStart + plugAndPlayDuration;
 
-  // ✅ explainer should start after Setup finishes
+  // explainer should start after Setup finishes
   const explainerStart = setupStart + setupDuration;
 
   const letsPlayStart = explainerStart + explainerDuration;
 
-  const promptStart = letsPlayStart + timing.letsPlayDuration;
+  const promptStart = letsPlayStart + letsPlayDuration;
 
   const resultsStart = promptStart + promptDuration;
 
@@ -174,12 +191,12 @@ export const PlugAndPlayVideo: React.FC<PlugAndPlayVideoProps> = ({ config }) =>
   return (
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
       {/* 1) Hook */}
-      <Sequence from={hookStart} durationInFrames={timing.hookDuration}>
+      <Sequence from={hookStart} durationInFrames={hookDuration}>
         <HookScene hookText={config.hookText} mcpServerName={config.mcpServerName} />
       </Sequence>
 
       {/* 2) Plug & Play */}
-      <Sequence from={plugAndPlayStart} durationInFrames={timing.plugAndPlayDuration}>
+      <Sequence from={plugAndPlayStart} durationInFrames={plugAndPlayDuration}>
         <PlugAndPlayScene badgeLine={config.badgeLine} />
       </Sequence>
 
@@ -190,13 +207,13 @@ export const PlugAndPlayVideo: React.FC<PlugAndPlayVideoProps> = ({ config }) =>
 
       {/* 4) Explainer (optional) */}
       {hasExplainer && (
-        <Sequence from={explainerStart} durationInFrames={timing.explainerDuration}>
+        <Sequence from={explainerStart} durationInFrames={explainerDuration}>
           <ExplainerScene explainerLines={explainerLines} />
         </Sequence>
       )}
 
       {/* 5) Let's Play */}
-      <Sequence from={letsPlayStart} durationInFrames={timing.letsPlayDuration}>
+      <Sequence from={letsPlayStart} durationInFrames={letsPlayDuration}>
         <LetsPlayScene />
       </Sequence>
 
@@ -222,6 +239,9 @@ export const PlugAndPlayVideo: React.FC<PlugAndPlayVideoProps> = ({ config }) =>
         <EndScene docsUrl={config.docsUrl} tutorialTitle={config.tutorialTitle} />
         {/* <EndSceneV2 docsUrl={config.docsUrl} tutorialTitle={config.tutorialTitle} /> */}
       </Sequence>
+
+      {/* Background music (always plays, lower volume) */}
+      <Audio src={staticFile("backgroundMusic.mp3")} volume={0.7} loop />
 
       {/* Audio voiceover (optional) */}
       {config.audioSrc ? (

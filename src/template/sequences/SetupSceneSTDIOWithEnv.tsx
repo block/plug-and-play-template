@@ -142,7 +142,7 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
               left: 0,
               right: 0,
               bottom: plugAndPlayBarHeight,
-              backgroundColor: "rgba(0, 0, 0, 0.25)",
+              backgroundColor: "rgba(0, 0, 0, 0.1)",
             }}
           />
 
@@ -152,17 +152,17 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
               paddingBottom: plugAndPlayBarHeight,
               justifyContent: "center",
               alignItems: "center",
-              padding: 30,
+              padding: 20,
             }}
           >
             <div
               style={{
-                width: "90%",
+                width: "95%",
                 backgroundColor: colors.white,
-                borderRadius: 22,
-                padding: 32,
+                borderRadius: 28,
+                padding: 44,
                 transform: `scale(${modalScale})`,
-                boxShadow: "0 20px 60px rgba(0, 0, 0, 0.4)",
+                boxShadow: "0 25px 70px rgba(0, 0, 0, 0.5)",
                 maxHeight: "85%",
                 overflow: "hidden",
               }}
@@ -172,30 +172,30 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 12,
-                  marginBottom: 24,
-                  paddingBottom: 16,
-                  borderBottom: "2px solid #E8E8E8",
+                  gap: 16,
+                  marginBottom: 32,
+                  paddingBottom: 20,
+                  borderBottom: "3px solid #E8E8E8",
                 }}
               >
                 <div
                   style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 10,
+                    width: 52,
+                    height: 52,
+                    borderRadius: 14,
                     backgroundColor: colors.teal,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
                     <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
                   </svg>
                 </div>
                 <span
                   style={{
-                    fontSize: 28,
+                    fontSize: 36,
                     fontWeight: 700,
                     color: colors.black,
                     fontFamily: "'Inter', sans-serif",
@@ -206,15 +206,15 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
               </div>
 
               {/* Form */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
                 {/* Extension Name */}
                 <div>
                   <label
                     style={{
-                      fontSize: 15,
+                      fontSize: 20,
                       fontWeight: 600,
                       color: "#666",
-                      marginBottom: 6,
+                      marginBottom: 10,
                       display: "block",
                       fontFamily: "'Inter', sans-serif",
                     }}
@@ -223,14 +223,14 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                   </label>
                   <div
                     style={{
-                      padding: "12px 16px",
+                      padding: "16px 20px",
                       backgroundColor: "#F5F5F5",
-                      borderRadius: 10,
+                      borderRadius: 12,
                       border: "2px solid #E0E0E0",
-                      fontSize: 20,
+                      fontSize: 26,
                       fontFamily: "'Inter', sans-serif",
                       color: colors.black,
-                      minHeight: 24,
+                      minHeight: 30,
                     }}
                   >
                     {extensionName.slice(0, nameChars)}
@@ -244,10 +244,10 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                 <div>
                   <label
                     style={{
-                      fontSize: 15,
+                      fontSize: 20,
                       fontWeight: 600,
                       color: "#666",
-                      marginBottom: 6,
+                      marginBottom: 10,
                       display: "block",
                       fontFamily: "'Inter', sans-serif",
                     }}
@@ -256,14 +256,14 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                   </label>
                   <div
                     style={{
-                      padding: "12px 16px",
+                      padding: "16px 20px",
                       backgroundColor: "#1a1a1a",
-                      borderRadius: 10,
+                      borderRadius: 12,
                       border: "2px solid #333",
-                      fontSize: 16,
+                      fontSize: 22,
                       fontFamily: "'SF Mono', 'Fira Code', monospace",
                       color: colors.teal,
-                      minHeight: 24,
+                      minHeight: 30,
                       wordBreak: "break-all",
                     }}
                   >
@@ -279,10 +279,10 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                   <div>
                     <label
                       style={{
-                        fontSize: 15,
+                        fontSize: 20,
                         fontWeight: 600,
                         color: "#666",
-                        marginBottom: 6,
+                        marginBottom: 10,
                         display: "block",
                         fontFamily: "'Inter', sans-serif",
                       }}
@@ -301,8 +301,8 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                           key={index}
                           style={{
                             display: "flex",
-                            gap: 10,
-                            marginBottom: 10,
+                            gap: 12,
+                            marginBottom: 12,
                             alignItems: "center",
                           }}
                         >
@@ -310,14 +310,14 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                           <div
                             style={{
                               flex: 1,
-                              padding: "10px 14px",
+                              padding: "14px 18px",
                               backgroundColor: "#F5F5F5",
-                              borderRadius: 8,
+                              borderRadius: 10,
                               border: "2px solid #E0E0E0",
-                              fontSize: 16,
+                              fontSize: 20,
                               fontFamily: "'SF Mono', 'Fira Code', monospace",
                               color: colors.black,
-                              minHeight: 20,
+                              minHeight: 26,
                             }}
                           >
                             {env.name.slice(0, progress.nameChars)}
@@ -333,14 +333,14 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                           <div
                             style={{
                               flex: 1.5,
-                              padding: "10px 14px",
+                              padding: "14px 18px",
                               backgroundColor: "#1a1a1a",
-                              borderRadius: 8,
+                              borderRadius: 10,
                               border: "2px solid #333",
-                              fontSize: 16,
+                              fontSize: 20,
                               fontFamily: "'SF Mono', 'Fira Code', monospace",
                               color: colors.orange,
-                              minHeight: 20,
+                              minHeight: 26,
                               wordBreak: "break-all",
                             }}
                           >
@@ -357,9 +357,9 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                           {/* Add Button */}
                           <div
                             style={{
-                              width: 44,
-                              height: 44,
-                              borderRadius: 10,
+                              width: 52,
+                              height: 52,
+                              borderRadius: 12,
                               backgroundColor: progress.showAddButton ? colors.teal : "#E0E0E0",
                               display: "flex",
                               alignItems: "center",
@@ -371,8 +371,8 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                             }}
                           >
                             <svg
-                              width="24"
-                              height="24"
+                              width="28"
+                              height="28"
                               viewBox="0 0 24 24"
                               fill={progress.showAddButton ? "white" : "#999"}
                             >
@@ -389,10 +389,10 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                 <div>
                   <label
                     style={{
-                      fontSize: 15,
+                      fontSize: 20,
                       fontWeight: 600,
                       color: "#666",
-                      marginBottom: 6,
+                      marginBottom: 10,
                       display: "block",
                       fontFamily: "'Inter', sans-serif",
                     }}
@@ -401,19 +401,20 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                   </label>
                   <div
                     style={{
-                      padding: "12px 16px",
+                      padding: "16px 20px",
                       backgroundColor: "#F5F5F5",
-                      borderRadius: 10,
+                      borderRadius: 12,
                       border: "2px solid #E0E0E0",
-                      fontSize: 16,
+                      fontSize: 22,
                       fontFamily: "'Inter', sans-serif",
                       color: colors.black,
                       display: "flex",
                       justifyContent: "space-between",
+                      alignItems: "center",
                     }}
                   >
                     <span>STDIO</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#666">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="#666">
                       <path d="M7 10l5 5 5-5z" />
                     </svg>
                   </div>
@@ -423,11 +424,11 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
               {/* Save button */}
               <div
                 style={{
-                  marginTop: 24,
+                  marginTop: 32,
                   display: "flex",
                   justifyContent: "flex-end",
                   alignItems: "center",
-                  gap: 16,
+                  gap: 20,
                 }}
               >
                 {/* Extension Added message */}
@@ -437,15 +438,15 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
                       transform: `scale(${extensionAddedScale})`,
                       display: "flex",
                       alignItems: "center",
-                      gap: 10,
+                      gap: 12,
                     }}
                   >
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill={colors.teal}>
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill={colors.teal}>
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                     </svg>
                     <span
                       style={{
-                        fontSize: 20,
+                        fontSize: 26,
                         color: colors.teal,
                         fontFamily: "'Inter', sans-serif",
                         fontWeight: 600,
@@ -458,14 +459,14 @@ export const SetupSceneSTDIOWithEnv: React.FC<SetupSceneSTDIOWithEnvProps> = ({
 
                 <div
                   style={{
-                    padding: "12px 32px",
+                    padding: "16px 40px",
                     backgroundColor: allTypingComplete ? colors.teal : "#ccc",
-                    borderRadius: 10,
-                    fontSize: 18,
+                    borderRadius: 12,
+                    fontSize: 24,
                     fontWeight: 600,
                     color: colors.white,
                     fontFamily: "'Inter', sans-serif",
-                    boxShadow: allTypingComplete ? `0 4px 18px rgba(78, 205, 196, 0.4)` : "none",
+                    boxShadow: allTypingComplete ? `0 6px 24px rgba(78, 205, 196, 0.4)` : "none",
                   }}
                 >
                   Save Changes

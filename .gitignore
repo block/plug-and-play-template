@@ -9,6 +9,7 @@ src/videos/
 
 # Work in progress
 src/template/sequences/EndSceneV2.tsx
+public/GitMCP
 
 # OS files
 .DS_Store

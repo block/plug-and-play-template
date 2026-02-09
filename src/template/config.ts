@@ -35,59 +35,74 @@ export type SetupConfig =
     };
 
 export type ResultConfig =
-    | {
-        type: "recording";
-        recordingPath: string; // e.g. "videos/my-mcp/results.mp4"
-        durationInSeconds?: number; // Goose gets this via ffprobe - determines how long Results scene plays
-      }
-    | {
-        type: "bullets";
-        bullets: string[];
-      }
-    | {
-        type: "visuals";
-        // Goose will create a custom scene based on this.
-        description?: string;
-        // goose can name the generated component and import it.
-        componentName?: string;
-      };
+  | {
+      type: "recording";
+      recordingPath: string; // e.g. "videos/my-mcp/results.mp4"
+      durationInSeconds?: number; // Goose gets this via ffprobe - determines how long Results scene plays
+    }
+  | {
+      type: "bullets";
+      bullets: string[];
+    }
+  | {
+      type: "visuals";
+      // Goose will create a custom scene based on this.
+      description?: string;
+      // goose can name the generated component and import it.
+      componentName?: string;
+    };
 
 export type SummaryConfig =
-      | { type: "none" }
-      | { type: "bullets"; lines: string[]; title?: string }
-      | { type: "visuals"; componentName?: string; description?: string };
+  | { type: "none" }
+  | { type: "bullets"; lines: string[]; title?: string }
+  | { type: "visuals"; componentName?: string; description?: string };
 
-export interface VideoConfig {
-        hookText: string;
-      
-        mcpServerName: string;
-        badgeLine: string;
-      
-        setup: SetupConfig;
-      
-        explainerLines?: string[];
-      
-        promptText: string;
-
-        // results router
-        results: ResultConfig;
-      
-        // Optional “closing summary” before EndScene
-        closingLines?: string[];
-
-        summary?: SummaryConfig;
-
-        captionsData?: Caption[];
-
-        audioSrc?: string;
-      
-        docsUrl: string;
-        tutorialTitle: string;
+// Optional timing overrides (in frames @ 30fps) to sync with audio
+export interface TimingOverrides {
+  hookDuration?: number;
+  plugAndPlayDuration?: number;
+  setupDuration?: number;
+  explainerDuration?: number;
+  letsPlayDuration?: number;
+  promptDuration?: number;
+  resultsDuration?: number;
+  summaryDuration?: number;
+  endDuration?: number;
 }
 
+export interface VideoConfig {
+  hookText: string;
+
+  mcpServerName: string;
+  badgeLine: string;
+
+  setup: SetupConfig;
+
+  explainerLines?: string[];
+
+  promptText: string;
+
+  // results router
+  results: ResultConfig;
+
+  // Optional closing summary before EndScene
+  closingLines?: string[];
+
+  summary?: SummaryConfig;
+
+  captionsData?: Caption[];
+
+  audioSrc?: string;
+
+  docsUrl: string;
+  tutorialTitle: string;
+
+  // Optional timing overrides to sync with audio cues
+  timingOverrides?: TimingOverrides;
+}
 
 export const councilOfMineConfigV7: VideoConfig = {
-  hookText: "Why trust one AI opinion…\nwhen you could get nine?",
+  hookText: "Why trust one AI opinion...\nwhen you could get nine?",
   mcpServerName: "Council of Mine",
   badgeLine: "multi-perspective reasoning",
 
@@ -100,7 +115,6 @@ export const councilOfMineConfigV7: VideoConfig = {
   explainerLines: [
     "MCP tools normally just return data",
     "With sampling, tools ask the LLM to reason",
-    "Each council member gets its own conversation",
   ],
 
   promptText:
@@ -110,14 +124,14 @@ export const councilOfMineConfigV7: VideoConfig = {
     type: "visuals",
     description:
       "Show a Council of Mine style animation: council members debate, vote, and converge on consensus.",
-    componentName: "DemoScene", 
+    componentName: "DemoScene",
   },
 
   summary: {
     type: "visuals",
     description:
       "As you can see, the council agrees, the real skill gap isn't coding or orchestration. It's at the intersection of both. If you don't understand coding, you'll never truly know how to orchestrate.",
-    componentName: "SummaryScene", 
+    componentName: "SummaryScene",
   },
 
   closingLines: [],

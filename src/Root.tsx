@@ -10,6 +10,7 @@ import {
 import { parseMedia } from "@remotion/media-parser";
 
 import { PlugAndPlayVideo, getSetupDuration } from "./template/PlugAndPlayVideo";
+import { calculateExplainerDuration } from "./template/sequences/ExplainerScene";
 import { timing } from "./template/styles";
 import type { VideoConfig } from "./template/config";
 
@@ -20,6 +21,43 @@ const FPS = 30;
 
 // Calculate the actual content duration based on config
 const calculateContentDuration = (config: VideoConfig): number => {
+  const overrides = config.timingOverrides ?? {};
+
+  // Explainer duration (dynamic based on content)
+  const explainerLines = config.explainerLines ?? [];
+  const hasExplainer = explainerLines.length > 0;
+  const defaultExplainerDuration = hasExplainer ? calculateExplainerDuration(explainerLines) : 0;
+
+  // If we have timing overrides, use them directly
+  if (Object.keys(overrides).length > 0) {
+    const hookDuration = overrides.hookDuration ?? timing.hookDuration;
+    const plugAndPlayDuration = overrides.plugAndPlayDuration ?? timing.plugAndPlayDuration;
+    const setupDuration = overrides.setupDuration ?? getSetupDuration(config.setup);
+    const explainerDuration = overrides.explainerDuration ?? defaultExplainerDuration;
+    const letsPlayDuration = overrides.letsPlayDuration ?? timing.letsPlayDuration;
+    const promptDuration = overrides.promptDuration ?? timing.promptDuration;
+    const resultsDuration = overrides.resultsDuration ?? timing.resultsDuration;
+    
+    const summary = config.summary ?? { type: "none" as const };
+    const hasSummary = summary.type !== "none";
+    const summaryDuration = overrides.summaryDuration ?? (hasSummary ? timing.summaryDuration : 0);
+    
+    const endDuration = overrides.endDuration ?? timing.endDuration;
+
+    return (
+      hookDuration +
+      plugAndPlayDuration +
+      setupDuration +
+      explainerDuration +
+      letsPlayDuration +
+      promptDuration +
+      resultsDuration +
+      summaryDuration +
+      endDuration
+    );
+  }
+
+  // Default calculation (no overrides)
   // Prompt duration calculation (mirrors PlugAndPlayVideo.tsx)
   const promptTextLength = config.promptText?.length ?? 0;
   const typingStart = 30;
@@ -31,11 +69,6 @@ const calculateContentDuration = (config: VideoConfig): number => {
 
   // Setup duration (dynamic based on type)
   const setupDuration = getSetupDuration(config.setup);
-
-  // Explainer duration (optional)
-  const explainerLines = config.explainerLines ?? [];
-  const hasExplainer = explainerLines.length > 0;
-  const explainerDuration = hasExplainer ? timing.explainerDuration : 0;
 
   // Summary duration (optional)
   const summary = config.summary ?? { type: "none" as const };
@@ -53,7 +86,7 @@ const calculateContentDuration = (config: VideoConfig): number => {
     timing.hookDuration +
     timing.plugAndPlayDuration +
     setupDuration +
-    explainerDuration +
+    defaultExplainerDuration +
     timing.letsPlayDuration +
     promptDuration +
     resultsDuration +
